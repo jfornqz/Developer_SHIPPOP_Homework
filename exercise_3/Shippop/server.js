@@ -1,24 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 //connect to database
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/shippop")
 mongoose.Promise = global.Promise
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
-//กำหนด Path
-var userApi = require('./routes/api/userApi');
-var productApi = require('./routes/api/productApi');
-var cartApi = require('./routes/api/cartApi');
 
-var app = express();
+//set Path
+const userApi = require('./routes/api/userApi');
+const productApi = require('./routes/api/productApi');
+const cartApi = require('./routes/api/cartApi');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

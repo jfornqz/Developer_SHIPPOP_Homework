@@ -4,7 +4,7 @@ var router = express.Router();
 var Cart = require("../../models/cartModel")
 
 router.get('/', (req, res) => {
-    // res.send('hello World')
+
     try {
         Cart.find().exec((err, data) => {
 

@@ -1,9 +1,9 @@
 //setting
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 //schema
 
-var userScheme = mongoose.Schema({
+const userScheme = mongoose.Schema({
     email: { type: String, require: true },
     password: { type: String, require: true },
     name: { type: String, require: true },
@@ -11,8 +11,8 @@ var userScheme = mongoose.Schema({
     DOB: { type: Date, require: false },
     picture: { type: String, require: false },
     tel: { type: String, require: false },
-});
+}, { versionKey: false });
 
-var User = mongoose.model('users', userScheme);
+const User = mongoose.model('users', userScheme);
 
 module.exports = User;

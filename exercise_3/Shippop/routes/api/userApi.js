@@ -1,25 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var User = require("../../models/userModel")
+const userController = require("../../controllers/userController")
 
-router.get('/', (req, res) => {
-    // res.send('hello World')
-    try {
-        User.find().exec((err, data) => {
 
-            if (err) {
+router.get('/', userController.getAllUser)
+router.get('/:id', userController.getUserById)
 
-                return res.status(500).send("Something wrong")
-            }
+router.post('/create', userController.createUser)
 
-            res.status(200).send(data)
-        })
-    } catch {
-        console.log("Something")
-    }
+router.put('/:id/edit', userController.editUser)
+
+router.delete('/:id/delete', userController.deleteById)
 
 
 
-})
+
 module.exports = router;

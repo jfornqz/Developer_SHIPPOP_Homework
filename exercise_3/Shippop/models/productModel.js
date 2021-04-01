@@ -1,9 +1,9 @@
 //setting
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 //schema
 
-var productScheme = mongoose.Schema({
+const productScheme = mongoose.Schema({
     productName: { type: String, require: true },
     description: { type: String, require: true },
     price: { type: Number, require: true },
@@ -17,6 +17,6 @@ var productScheme = mongoose.Schema({
     owner: { type: Object, require: true },
 });
 
-var products = mongoose.model('products', productScheme);
+const products = mongoose.model('products', productScheme);
 
 module.exports = products;
