@@ -2,13 +2,12 @@
 const mongoose = require('mongoose');
 
 //schema
-
 const cartScheme = mongoose.Schema({
-    product: { type: String, require: true },
+    product: { type: mongoose.Schema.Types.ObjectId, ref: "products", require: true },
     amount: { type: Number, require: true },
     price: { type: Number, require: true },
 
-});
+}, {versionKey: false});
 
 const Cart = mongoose.model('carts', cartScheme);
 

@@ -1,4 +1,33 @@
 const User = require("../models/userModel")
+const mongoose = require('mongoose')
+
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString().replace(/:|\./g,'') + ' - ' + file.originalname)
+    }
+})
+
+const fileFilter = (req, file, cb) => {
+
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null, true)
+    }else{
+        cb(null, false)
+    }
+
+}
+
+exports.upload = multer({storage: storage, 
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+})
+
 
 // Get all user
 exports.getAllUser = async(req, res, next) => {
@@ -26,9 +55,22 @@ exports.getUserById = async(req, res, next) => {
 
 // Create User
 exports.createUser = async(req, res, next) => {
+
     try {
-        let data = new User(req.body)
-        await data.save(() => {
+        let data = new User({
+            _id: new mongoose.Types.ObjectId(),
+            email: req.body.email,
+            password: req.body.password,
+            name: req.body.name,
+            gender: req.body.gender,
+            DOB: req.body.DOB,
+            picture: req.file.path,
+            tel: req.body.tel
+        })
+
+        console.log(res)
+        await data.save((err, data) => {
+
             res.send({ message: "Create Success!" })
         })
 

@@ -1,23 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Cart = require("../../models/cartModel")
+const cartController = require("../../controllers/cartController")
 
-router.get('/', (req, res) => {
+router.get('/', cartController.getCurrentProduct)
 
-    try {
-        Cart.find().exec((err, data) => {
+router.post('/add', cartController.addProductToCart)
 
-            if (err) {
+router.delete('/:id/delete', cartController.deleteCartItemById)
 
-                return res.status(500).send("Something wrong")
-            }
-
-            res.status(200).send(data)
-        })
-    } catch {
-        console.log("Something")
-    }
-
-})
 module.exports = router;

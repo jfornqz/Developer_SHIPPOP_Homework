@@ -1,5 +1,4 @@
-const e = require("express")
-const Product = require("../model/productModel")
+const Product = require("../models/productModel")
 
 //get all Product
 exports.getAllProduct = async(req, res, next) => {
@@ -28,7 +27,6 @@ exports.createProduct = async(req, res, next) => {
         await data.save(() => {
             res.status(200).json(data)
         })
-        res.status(200).send({ message: "Create Success!" })
     } catch (err) {
         res.status(500).send({ message: "Error!" })
     }
@@ -37,14 +35,14 @@ exports.createProduct = async(req, res, next) => {
 //Edit Product
 exports.editProduct = async(req, res, next) => {
     try {
-        let data = await Product.findOneAndUpdate({ _id: req.params.id }, areq.body)
+        let data = await Product.findOneAndUpdate({ _id: req.params.id }, req.body)
         res.status(200).send({ message: "Edit Success!" })
     } catch (err) {
         res.status(500).send({ message: "Error!" })
     }
 }
 
-// delete Product with id
+// Delete Product with id
 exports.deleteById = async(req, res, next) => {
 
     try {

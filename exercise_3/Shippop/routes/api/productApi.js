@@ -1,25 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Product = require("../../models/productModel")
+const productController = require('../../controllers/productController')
 
-router.get('/', (req, res) => {
+router.get('/', productController.getAllProduct)
+router.get('/:id', productController.getProductById)
 
-    try {
-        Product.find().exec((err, data) => {
+router.post('/create', productController.createProduct)
 
-            if (err) {
-                return res.status(500).send("Something wrong")
-            }
+router.put('/:id/edit', productController.editProduct)
 
-            res.status(200).send(data)
-        })
-    } catch {
-        console.log("Something")
-    }
+router.delete('/:id/delte', productController.deleteById)
 
-})
-router.post('/adduser', (req, res) => {
-
-})
 module.exports = router;

@@ -4,19 +4,20 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
 //connect to database
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 try {
-    mongoose.connect("mongodb://localhost/shippop")
+    mongoose.connect("mongodb+srv://jfornqz01:jfornqz123@shippopcluster.jwkci.mongodb.net/shippop?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
     mongoose.Promise = global.Promise
     console.log("Connect success.")
 } catch (err) {
     console.log("Can't connect to database")
-}
+}/*/
 
 //connect to database
-// const connectDB = require('./config/db')
-// connectDB();
+const connectDB = require('./config/db')
+connectDB();
 
 
 
@@ -26,11 +27,12 @@ const indexRouter = require('./routes/index');
 const userApi = require('./routes/api/userApi');
 const productApi = require('./routes/api/productApi');
 const cartApi = require('./routes/api/cartApi');
-
 const app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -39,11 +41,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // create api routes
 app.use('/', indexRouter);
 app.use('/api/users', userApi);
 app.use('/api/products', productApi);
 app.use('/api/carts', cartApi);
+//app.use('/api/payments')
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

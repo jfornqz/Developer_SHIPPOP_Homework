@@ -1,0 +1,61 @@
+body {
+    font-size: 1.4vw;
+    font-family: 'Kanit', sans-serif;
+}
+h1{
+    font-weight: 900;
+}
+
+.font-nav-item{
+    font-size: 0.9vw;
+}
+
+.black-color{
+    color: black;
+}
+
+.space-left{
+    margin-left: 3.4vw;
+}
+
+.space-item-left{
+    margin-left: 1vw;
+}
+
+.container-image-height{
+    height: 63.6vh;
+}
+
+.size-of-icon{
+    height: 1vw;
+    width: 1vw;
+    margin-right: 1vw;
+    margin-top: 1.2vh;
+}
+.size-of-icon-search{
+    height: 1.2vw;
+    width: 1.2vw;
+    margin-right: 1vw;
+    margin-top: 1vh;
+    margin-left: 0.4vw;
+}
+
+.size-of-icon-profile{
+    height: 2vw;
+    width: 2vw;
+    margin-top: 0.3vh;
+    margin-left: 1.6vw;
+    
+}
+
+.space-top{
+    margin-top: 7vh;
+}
+
+.scale-to-min-img{
+    margin: 2vw;
+}
+
+.space-right{
+    margin-right: 0.6vw;
+}
