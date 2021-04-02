@@ -1,2 +1,3 @@
-#### Developer_SHIPPOP_Homework
-##### Exercise for Developer SHIPPOP
+### Developer_SHIPPOP_Homework
+#### Exercise for Developer SHIPPOP
+##### Thotsawat Jantapitak
