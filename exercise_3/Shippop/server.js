@@ -6,14 +6,23 @@ const logger = require('morgan');
 
 //connect to database
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/shippop")
-mongoose.Promise = global.Promise
+try {
+    mongoose.connect("mongodb://localhost/shippop")
+    mongoose.Promise = global.Promise
+    console.log("Connect success.")
+} catch (err) {
+    console.log("Can't connect to database")
+}
+
+//connect to database
+// const connectDB = require('./config/db')
+// connectDB();
 
 
+
+//define variable of api path
 const indexRouter = require('./routes/index');
 
-
-//set Path
 const userApi = require('./routes/api/userApi');
 const productApi = require('./routes/api/productApi');
 const cartApi = require('./routes/api/cartApi');
@@ -30,9 +39,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// create api routes
 app.use('/', indexRouter);
-// app.use('/users', userApi);
-
 app.use('/api/users', userApi);
 app.use('/api/products', productApi);
 app.use('/api/carts', cartApi);

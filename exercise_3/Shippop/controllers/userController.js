@@ -27,7 +27,7 @@ exports.getUserById = async(req, res, next) => {
 // Create User
 exports.createUser = async(req, res, next) => {
     try {
-        let data = await User.findOneAndUpdate({ _id: req.params.id }, req.body)
+        let data = new User(req.body)
         await data.save(() => {
             res.send({ message: "Create Success!" })
         })
